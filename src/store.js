@@ -1,8 +1,11 @@
+// store nombre de variables 
+
 export const initialStore=()=>{
   return{
     contacts: []
   }
 }
+
 
 
 // A partir de aquí vamos a declarar las funciones que nos van a modificar las variables de arriba
