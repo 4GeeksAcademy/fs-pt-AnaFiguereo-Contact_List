@@ -17,21 +17,15 @@ export const getContacts = async (dispatch) => {
     const data = await response.json()
     dispatch({type: "get_contacts", payload:data.contacts}) 
 }
-export const createContacts = async (dispatch) => {
+export const createContacts = async (addinfo, dispatch) => {
     const response = await fetch (`${url}/ana/contacts`, 
         {   method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body:JSON.stringify({
-                "name": "",
-                "phone": "",
-                "email": "",
-                "address": ""
-            })
+            body:JSON.stringify({addinfo})
         })
-    const data =await response.json()
-    dispatch({type:"get_contacts", payload:data.contacts})
+   if (response.ok) {getContacts(dispatch)}
 }
 export const editContacts = async (id, updateData,dispatch) => {
     const response = await fetch(`${url}/ana/contacts/${id}`,
@@ -43,6 +37,6 @@ export const editContacts = async (id, updateData,dispatch) => {
 }
 export const deleteContacts = async (id) => {
     const response = await fetch(`${url}/ana/contacts/${id}`,
-        { method: "DELETE", }
+        { method: "DELETE" }
     )
 }
