@@ -1,6 +1,6 @@
 import React from "react";
-import { Form } from "react-router-dom"
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
+import { Form } from "../components/Form.jsx";
 
 export const AddContact = () => {
     const {store, dispatch} =useGlobalReducer()
