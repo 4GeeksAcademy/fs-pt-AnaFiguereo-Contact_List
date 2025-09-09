@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import useGlobalReducer from "../hooks/useGlobalReducer"
 import { useState } from "react"
+import { createContacts } from "../services/apiServices"
 export const Form = () => {
     const [newContact, setNewContact] = useState({
         name : "",
@@ -8,15 +9,27 @@ export const Form = () => {
         email : "",
         address : ""
     }) 
+    const {dispatch} =useGlobalReducer()
     const handleChange = (e) => {
-        const {id, value} = e
+        // target es para coger la posicion del evento
+        const {id, value} = e.target
         // las id son las key del objeto de la api
-        setNewContact((previousContact) => ({
-            ...previousContact,
+        setNewContact({
+            ...newContact,
             [id]: value
-        }))
+        })
         console.log(newContact);
         
+    }
+    const handleSubmit = () => {
+        createContacts(newContact,dispatch)
+        setNewContact({
+        name : "",
+        phone : "",
+        email : "",
+        address : ""
+    }) 
+    
     }
     return (
         <>
@@ -24,7 +37,7 @@ export const Form = () => {
                 rel="stylesheet"
                 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
                 integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-                crossorigin="anonymous"
+                crossOrigin="anonymous"
                 referrerpolicy="no-referrer" />
             <div className="container mt-2">
 
@@ -63,7 +76,7 @@ export const Form = () => {
                         Phone number
                     </label>
                     <input
-                        type="number"
+                        type="telf"
                         className="form-control"
                         id="phone"
                         value={newContact.phone}
@@ -94,7 +107,8 @@ export const Form = () => {
                     </div>
                     <button 
                     type="button" 
-                    className="btn btn-success ms-2">
+                    className="btn btn-success ms-2"
+                    onClick={handleSubmit}>
                         Save change
                     </button>
                 </div>

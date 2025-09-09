@@ -17,15 +17,21 @@ export const getContacts = async (dispatch) => {
     const data = await response.json()
     dispatch({type: "get_contacts", payload:data.contacts}) 
 }
-export const createContacts = async (addinfo, dispatch) => {
+export const createContacts = async (newContact, dispatch) => {
     const response = await fetch (`${url}/ana/contacts`, 
         {   method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body:JSON.stringify({addinfo})
+            body:JSON.stringify(newContact)
         })
-   if (response.ok) {getContacts(dispatch)}
+   if (response.ok) { 
+    const data =response.json() 
+    dispatch({
+        type : "new_contact",
+        payload : data
+    })
+    getContacts(dispatch)}
 }
 export const editContacts = async (id, updateData,dispatch) => {
     const response = await fetch(`${url}/ana/contacts/${id}`,
