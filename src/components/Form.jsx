@@ -1,10 +1,23 @@
 import { Link } from "react-router-dom"
 import useGlobalReducer from "../hooks/useGlobalReducer"
+import { useState } from "react"
 export const Form = () => {
-    const handleSave
-    // Creo que ahora hay que hacer que los id de los inputs se conecten a la store para que los agregue
-    // usando parámetros. Ejemplo:
-    // ni idea
+    const [newContact, setNewContact] = useState({
+        name : "",
+        phone : "",
+        email : "",
+        address : ""
+    }) 
+    const handleChange = (e) => {
+        const {id, value} = e
+        // las id son las key del objeto de la api
+        setNewContact((previousContact) => ({
+            ...previousContact,
+            [id]: value
+        }))
+        console.log(newContact);
+        
+    }
     return (
         <>
             <link
@@ -17,14 +30,16 @@ export const Form = () => {
 
                 <div className="mb-3">
                     <label
-                        for="Name"
+                        for="name"
                         className="form-label">
                         Full Name
                     </label>
                     <input
                         type="string"
                         className="form-control"
-                        id="Name"
+                        id="name"
+                        value={newContact.name}
+                        onChange={handleChange}
                         placeholder="Name and Last Name" />
                 </div>
                 <div className="mb-3">
@@ -37,30 +52,36 @@ export const Form = () => {
                         type="email"
                         className="form-control"
                         id="email"
+                        value={newContact.email}
+                        onChange={handleChange}
                         placeholder="name@example.com" />
                 </div>
                 <div className="mb-3">
                     <label
-                        for="Phone"
+                        for="phone"
                         className="form-label">
                         Phone number
                     </label>
                     <input
                         type="number"
                         className="form-control"
-                        id="Phone"
+                        id="phone"
+                        value={newContact.phone}
+                        onChange={handleChange}
                         placeholder="19-16191646" />
                 </div>
                 <div className="mb-3">
                     <label
-                        for="Address"
+                        for="address"
                         className="form-label">
                         Address
                     </label>
                     <input
                         type="email"
                         className="form-control"
-                        id="Address"
+                        id="address"
+                         value={newContact.address}
+                        onChange={handleChange}
                         placeholder="wonderfull n-2" />
                 </div>
                 <div className="d-flex justify-content-center">

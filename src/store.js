@@ -16,6 +16,11 @@ export default function storeReducer(store, action = {}) {
         ...store, 
         contacts: action.payload
       }
+    case `new_contact`:
+      return {
+        ...store, 
+        
+      }
     
     default:
       throw Error('Unknown action.');
