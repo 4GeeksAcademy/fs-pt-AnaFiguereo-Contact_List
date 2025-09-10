@@ -19,7 +19,7 @@ export default function storeReducer(store, action = {}) {
     case `new_contact`:
       return {
         ...store, 
-        contacts: [...contacts, action.payload]
+        contacts: [...store.contacts, action.payload]
       }
     
     default:

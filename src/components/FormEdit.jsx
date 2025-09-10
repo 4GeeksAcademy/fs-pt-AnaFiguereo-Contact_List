@@ -1,38 +1,39 @@
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import useGlobalReducer from "../hooks/useGlobalReducer"
 import { useState } from "react"
 import { createContacts } from "../services/apiServices"
-export const Form = () => {
-    const { dispatch } = useGlobalReducer()
+export const FormEdit = () => {
+    const { dispatch, store } = useGlobalReducer()
+    const {theId} =useParams()
+    const contact = store.contacts.filter(c => c.id === id)
 
-    // AGREGAR CONTACTO Y GUARDAR INFORMACIÓN 
-
-    const [newContact, setNewContact] = useState({
-        name: "",
-        phone: "",
-        email: "",
-        address: ""
+    //EDITAR EL CONTACTO POR ID
+    const [updateData, setUpdateData] = useState({
+        name: contact.name,
+        phone: contact.phone,
+        email: contact.email,
+        address: contact.address
     })
     const handleChange = (e) => {
         // target es para coger la posicion del evento
         const { id, value } = e.target
         // las id son las key del objeto de la api
-        setNewContact({
-            ...newContact,
+        setUpdateData({
+            ...updateData,
             [id]: value
         })
     }
-      //  Normalmemte se usa submit para manejar cambios
+    //  Normalmemte se usa submit para manejar cambios
     const handleSubmit = () => {
 
         // If nose que crea un contacto
-        createContacts(newContact, dispatch)
+        createContacts(updateData, dispatch)
         // Limpiamos los inputs
-        setNewContact({
-            name: "",
-            phone: "",
-            email: "",
-            address: ""
+        setUpdateData({
+            name: contact.name,
+            phone: contact.phone,
+            email: contact.email,
+            address: contact.address
         })
     }
     return (
@@ -55,7 +56,7 @@ export const Form = () => {
                         type="string"
                         className="form-control"
                         id="name"
-                        value={newContact.name}
+                        value={updateData.name}
                         onChange={handleChange}
                         placeholder="Name and Last Name" />
                 </div>
@@ -69,7 +70,7 @@ export const Form = () => {
                         type="email"
                         className="form-control"
                         id="email"
-                        value={newContact.email}
+                        value={updateData.email}
                         onChange={handleChange}
                         placeholder="name@example.com" />
                 </div>
@@ -83,7 +84,7 @@ export const Form = () => {
                         type="telf"
                         className="form-control"
                         id="phone"
-                        value={newContact.phone}
+                        value={updateData.phone}
                         onChange={handleChange}
                         placeholder="19-16191646" />
                 </div>
@@ -97,7 +98,7 @@ export const Form = () => {
                         type="email"
                         className="form-control"
                         id="address"
-                        value={newContact.address}
+                        value={updateData.address}
                         onChange={handleChange}
                         placeholder="wonderfull n-2" />
                 </div>
