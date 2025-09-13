@@ -21,8 +21,8 @@ export const Form = () => {
             ...newContact,
             [id]: value
         })
-    }
-      //  Normalmemte se usa submit para manejar cambios
+    }   
+    //  Normalmemte se usa submit para manejar cambios
     const handleSubmit = () => {
 
         // If nose que crea un contacto
