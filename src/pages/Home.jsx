@@ -21,6 +21,7 @@ export const Home = () => {
 						address={contact.address}
 						phone={contact.phone}
 						email={contact.email}
+						id = {contact.id}
 					/>
 				</div>
 			))}

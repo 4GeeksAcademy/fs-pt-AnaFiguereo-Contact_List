@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom"
 
-export const Card = ({ name, phone, email, address }) => {
+export const Card = ({ name, phone, email, address, id }) => {
+
     return (
         <>
             <link
@@ -25,11 +27,14 @@ export const Card = ({ name, phone, email, address }) => {
                             className="btn btn-outline-danger">
                             <i className="fa-regular fa-pen-to-square" style={{ color: "#ff0000" }}></i>
                         </button>
+                        <Link to={`/editContact/${id}`}>                 
                         <button
                             type="button"
                             className="btn btn-outline-danger">
                             <i className="fa-regular fa-trash-can" style={{ color: "#ff0000" }}></i>
                         </button>
+                        </Link>
+
                     </div>
                 </div>
             </div>

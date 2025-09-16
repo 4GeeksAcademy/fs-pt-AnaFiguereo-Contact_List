@@ -5,7 +5,7 @@ import { createContacts } from "../services/apiServices"
 export const FormEdit = () => {
     const { dispatch, store } = useGlobalReducer()
     const {theId} =useParams()
-    const contact = store.contacts.filter(c => c.id === id)
+    const contact = store.contacts.filter(c => c.id === parseInt(theId)) //ESTO NO ME SALE
 
     //EDITAR EL CONTACTO POR ID
     const [updateData, setUpdateData] = useState({

@@ -21,7 +21,7 @@ export const createAgenda = async () => {
 export const getContacts = async (dispatch) => {
     const response = await fetch(`${url}/ana/contacts`, {method: "GET"}) 
     if (!response.ok) {
-        await createAgenda() // PORQUE CREAMOS CONTACTO SI DA FALLO LA LLAMADA??
+        await createAgenda()
     }
     //                 los métodos van con paréntesis pegado
     const data = await response.json()
