@@ -1,18 +1,24 @@
 import { Link, useParams } from "react-router-dom"
 import useGlobalReducer from "../hooks/useGlobalReducer"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { createContacts } from "../services/apiServices"
 export const FormEdit = () => {
     const { dispatch, store } = useGlobalReducer()
-    const {theId} =useParams()
-    const contact = store.contacts.filter(c => c.id === parseInt(theId)) //ESTO NO ME SALE
-
+    const url = (`https://playground.4geeks.com/contact/agendas`)
+    const { theId } = useParams()
+    const getContact = () => {
+        const contact = store.contacts.filter(contact => contact.id == theId)[0]
+        setUpdateData(contact)
+    }
+    useEffect(() => {
+        getContact()
+    }, [theId])
     //EDITAR EL CONTACTO POR ID
     const [updateData, setUpdateData] = useState({
-        name: contact.name,
-        phone: contact.phone,
-        email: contact.email,
-        address: contact.address
+        name: "",
+        phone: "",
+        email: "",
+        address: ""
     })
     const handleChange = (e) => {
         // target es para coger la posicion del evento
@@ -25,16 +31,7 @@ export const FormEdit = () => {
     }
     //  Normalmemte se usa submit para manejar cambios
     const handleSubmit = () => {
-
-        // If nose que crea un contacto
-        createContacts(updateData, dispatch)
-        // Limpiamos los inputs
-        setUpdateData({
-            name: contact.name,
-            phone: contact.phone,
-            email: contact.email,
-            address: contact.address
-        })
+        // prepara este botón para editar
     }
     return (
         <>

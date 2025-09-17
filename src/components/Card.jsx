@@ -22,18 +22,19 @@ export const Card = ({ name, phone, email, address, id }) => {
                         </div>
                     </div>
                     <div className="col-md-2 d-flex justify-content-end">
-                        <button
-                            type="button"
-                            className="btn btn-outline-danger">
-                            <i className="fa-regular fa-pen-to-square" style={{ color: "#ff0000" }}></i>
-                        </button>
-                        <Link to={`/editContact/${id}`}>                 
+                        <Link to={`/editContact/${id}`}>
+                            <button
+                                type="button"
+                                className="btn btn-outline-danger">
+                                <i className="fa-regular fa-pen-to-square" style={{ color: "#ff0000" }}></i>
+                            </button>
+                        </Link>
                         <button
                             type="button"
                             className="btn btn-outline-danger">
                             <i className="fa-regular fa-trash-can" style={{ color: "#ff0000" }}></i>
                         </button>
-                        </Link>
+
 
                     </div>
                 </div>
