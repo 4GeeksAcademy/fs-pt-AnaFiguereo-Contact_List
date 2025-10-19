@@ -32,6 +32,13 @@ export const FormEdit = () => {
     //  Normalmemte se usa submit para manejar cambios
     const handleSubmit = () => {
         // prepara este botón para editar
+        updateData (contact,dispatch)
+        setUpdateData ({
+            name: "",
+            phone: "",
+            email: "",
+            address: ""
+        })
     }
     return (
         <>
@@ -105,7 +112,7 @@ export const FormEdit = () => {
                             <button type="button" className="btn btn-secondary">
                                 <i className="fa-solid fa-caret-left"></i>
                             </button>
-                        </Link>
+                        </Link> 
                     </div>
                     <button
                         type="button"
